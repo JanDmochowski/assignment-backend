@@ -1,13 +1,15 @@
 import { Request } from 'express-serve-static-core';
+// eslint-disable-next-line node/no-extraneous-import
 import { ParsedQs } from 'qs';
 import { logger } from '../..';
 import { getAirportList } from './airports';
 import { flights } from '../../services';
 
+// eslint-disable-next-line max-len
 export async function getSchedule(req: Request<{ origin: string; } & { destination: string; }, any, any, ParsedQs, Record<string, any>>) {
-  const airports = await getAirportList();
-  const origin = req.param('origin') as string;
-  const destination = req.param('destination') as string;
+  const airports = getAirportList();
+  const origin = req.param('origin');
+  const destination = req.param('destination');
   const departureDate = req.query.departureDate as string;
   const returnDate = req.query.returnDate as string;
   const service = req.query.service as string;
@@ -28,7 +30,10 @@ export async function getSchedule(req: Request<{ origin: string; } & { destinati
     throw new Error('Wrong destination IATA code');
   }
 
-  const result = await flights.searchFlights(emptySearch, { origin, destination, departureDate, returnDate, service });
+  const result = await flights.searchFlights(
+    emptySearch,
+    { origin, destination, departureDate, returnDate, service },
+  );
 
   return result;
 }

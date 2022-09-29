@@ -1,27 +1,71 @@
 {
+  "name": "assignment-backend",
+  "version": "0.0.2",
   "scripts": {
-    "start": "tsc && node ./dist/",
-    "lint": "eslint . --ext .ts"
+    "start": "nodemon"
   },
-  "devDependencies": {
-    "@types/express": "^4.17.13",
-    "@types/lodash": "^4.14.185",
-    "@typescript-eslint/eslint-plugin": "^5.36.2",
-    "@typescript-eslint/parser": "^5.36.2",
-    "eslint": "^8.23.1",
-    "typescript": "^4.8.3"
+  "nodemonConfig": {
+    "watch": [
+      "src"
+    ],
+    "ext": "ts, html",
+    "ignore": [
+      "src/public"
+    ],
+    "exec": "./node_modules/.bin/ts-node --files -r tsconfig-paths/register ./src"
+  },
+  "_moduleAliases": {
+    "@controllers": "dist/controllers",
+    "@services": "dist/services",
+    "@models": "dist/models",
+    "@shared": "dist/shared",
+    "@server": "dist/server",
+    "@routes": "dist/routes"
+  },
+  "engines": {
+    "node": ">=8.10.0"
   },
   "dependencies": {
-    "@types/cors": "^2.8.12",
-    "@types/logger": "^0.0.1",
-    "@types/node": "^18.7.16",
-    "@types/uuid": "^8.3.4",
+    "command-line-args": "^5.2.1",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
+    "dotenv": "^16.0.2",
     "express": "^4.18.1",
+    "express-async-errors": "^3.1.1",
+    "http-status-codes": "^2.2.0",
+    "jet-logger": "^1.2.6",
+    "jsonfile": "^6.1.0",
     "lodash": "^4.17.21",
+    "module-alias": "^2.2.2",
     "moment": "^2.29.4",
     "ts-node": "^10.9.1",
     "tslog": "^3.3.4",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/command-line-args": "^5.2.0",
+    "@types/cookie-parser": "^1.4.3",
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.14",
+    "@types/find": "^0.2.1",
+    "@types/fs-extra": "^9.0.13",
+    "@types/jsonfile": "^6.1.0",
+    "@types/lodash": "^4.14.185",
+    "@types/logger": "^0.0.1",
+    "@types/node": "^18.7.23",
+    "@types/supertest": "^2.0.12",
+    "@types/uuid": "^8.3.4",
+    "@typescript-eslint/eslint-plugin": "^5.38.1",
+    "@typescript-eslint/parser": "^5.38.1",
+    "eslint": "^8.24.0",
+    "eslint-plugin-node": "^11.1.0",
+    "find": "^0.3.0",
+    "fs-extra": "^10.1.0",
+    "nodemon": "^2.0.20",
+    "supertest": "^6.2.4",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.1.0",
+    "typescript": "^4.8.4",
     "uuid": "^9.0.0"
   }
 }
